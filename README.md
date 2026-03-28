@@ -19,7 +19,7 @@ La aplicación utiliza Google AdMob para mostrar anuncios. AdMob puede recopilar
 Más info: https://policies.google.com/privacy
 
 ## 4. Permisos
-La aplicación puede solicitar permiso de cámara (`android.permission.CAMERA`) para escanear tickets de compra.
+La aplicación puede solicitar permiso de notificaciones.
 
 ## 5. Compartición de datos
 No compartimos datos personales con terceros. Solo los servicios publicitarios (AdMob) pueden recopilar información técnica según sus propias políticas.
