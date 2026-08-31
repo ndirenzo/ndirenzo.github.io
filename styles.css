@@ -1,0 +1,577 @@
+/* ==========================================================================
+   COMPACT DEVELOPER PORTFOLIO - NICO DI RENZO
+   4 Horizontal Project Cards • One-Screen Focus • Adaptive Dynamic Modals
+   Custom Focal Centering for Key Dashboards (Donut Chart & Person Detection)
+   ========================================================================== */
+
+:root {
+  --bg: #090b0e;
+  --bg-card: #13161d;
+  --bg-card-hover: #1b202a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(206, 255, 0, 0.5);
+  --accent: #CEFF00; /* Acid Volt */
+  --accent-cyan: #38bdf8;
+  --accent-emerald: #34d399;
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --radius: 12px;
+  --radius-sm: 6px;
+  --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.portfolio-wrapper {
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Header & Compact Nav */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.brand-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 10px rgba(206, 255, 0, 0.2);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.top-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.link-btn {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: var(--transition);
+}
+
+.link-btn:hover {
+  color: var(--accent);
+}
+
+.link-btn.btn-pill {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+  color: var(--text-main);
+}
+
+.link-btn.btn-pill:hover {
+  border-color: var(--accent);
+  background: rgba(206, 255, 0, 0.08);
+}
+
+/* Compact Hero Header */
+.compact-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  max-width: 820px;
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.hero-name {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.hero-hint {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 4-Column Horizontal Cards Grid */
+.cards-row-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.card-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: var(--transition);
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-hover);
+  box-shadow: 0 16px 32px -10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(206, 255, 0, 0.12);
+}
+
+/* Card Visual Thumbnail */
+.card-thumb {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: #050608;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.4s ease;
+}
+
+/* Specific Thumbnail Focal Points */
+.card-item[data-project="portfolio-tracker"] .card-img {
+  object-position: center 78%; /* Centers directly on the Donut / Pie Chart */
+}
+
+.card-item[data-project="bar-vision"] .card-img {
+  object-position: 32% 45%; /* Centers directly on the Person & Table Detection */
+}
+
+.card-item[data-project="spendtrack-mobile"] .card-img {
+  object-position: center 20%;
+}
+
+.card-item[data-project="turnos"] .card-img {
+  object-position: center 15%;
+}
+
+.card-item:hover .card-img {
+  transform: scale(1.06);
+}
+
+.card-overlay-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #000;
+  background: var(--accent);
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  z-index: 2;
+}
+
+/* Card Content Area */
+.card-content {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-action-icon {
+  font-size: 0.85rem;
+  color: var(--text-faint);
+  transition: var(--transition);
+}
+
+.card-item:hover .card-action-icon {
+  color: var(--accent);
+  transform: translate(2px, -2px);
+}
+
+.card-tagline {
+  font-size: 0.825rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+  margin-bottom: 14px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+/* Compact Footer */
+.bottom-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   Adaptive Modal Architecture
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 10, 0.92);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-card {
+  background: #11141b;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 960px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9);
+  transform: scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.modal-backdrop.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background: rgba(17, 20, 27, 0.98);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.modal-body {
+  padding: 22px;
+}
+
+/* ==========================================================================
+   LAYOUT A: PORTRAIT / MOBILE ONLY (SpendTrack Mobile)
+   ========================================================================== */
+.modal-layout-portrait {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+.modal-layout-portrait .modal-media-pane {
+  background: #06070a;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 440px;
+  max-height: 480px;
+  overflow: hidden;
+}
+
+.modal-layout-portrait .modal-media-pane img {
+  max-height: 460px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  border-radius: 6px;
+  display: block;
+}
+
+.modal-layout-portrait .modal-content-pane {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   LAYOUT B: LANDSCAPE / DESKTOP (Portfolio Tracker, Bar Vision, Turnos)
+   With precise custom focal points for Donut Chart & Person Tracking
+   ========================================================================== */
+.modal-layout-landscape {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-layout-landscape .modal-media-pane {
+  width: 100%;
+  height: 250px;
+  background: #06070a;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-layout-landscape .modal-media-pane img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Project-Specific Modal Landscape Focal Points */
+.modal-card[data-current-project="portfolio-tracker"] .modal-media-pane img {
+  object-position: center 78%; /* Shows Donut / Pie Chart & Category breakdown prominently */
+}
+
+.modal-card[data-current-project="bar-vision"] .modal-media-pane img {
+  object-position: 35% 45%; /* Shows Person Detection, Bounding Box & Polygon clearly */
+}
+
+.modal-card[data-current-project="turnos"] .modal-media-pane img {
+  object-position: center center;
+}
+
+.modal-landscape-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.modal-landscape-left, .modal-landscape-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Reusable Modal Info Blocks */
+.modal-tagline-text {
+  font-size: 0.95rem;
+  color: #f1f5f9;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.modal-info-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+
+.modal-info-block h4 {
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 5px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-info-block p, .modal-info-block ul {
+  font-size: 0.835rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.modal-info-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 0;
+}
+
+.modal-info-block ul li::before {
+  content: "→ ";
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.modal-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .cards-row-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-layout-portrait {
+    grid-template-columns: 1fr;
+  }
+  .modal-layout-portrait .modal-media-pane {
+    min-height: 260px;
+    max-height: 340px;
+  }
+  .modal-landscape-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 16px;
+  }
+  .cards-row-grid {
+    grid-template-columns: 1fr;
+  }
+  .card-thumb {
+    height: 180px;
+  }
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
