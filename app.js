@@ -78,52 +78,78 @@ const projectsData = {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+// Global Open Modal Function (callable directly from HTML onclick and event listeners)
+function openProjectModal(projectId) {
+  const data = projectsData[projectId];
+  if (!data) return;
+
   const modalBackdrop = document.getElementById("project-modal");
   const modalCard = document.querySelector(".modal-card");
-  const modalCloseBtn = document.getElementById("modal-close-btn");
   const modalContainer = document.getElementById("modal-dynamic-body");
   const modalBadge = document.getElementById("modal-badge");
   const modalTitle = document.getElementById("modal-title");
-  const cards = document.querySelectorAll(".card-item");
 
-  function renderModal(projectId) {
-    const data = projectsData[projectId];
-    if (!data) return;
+  if (!modalBackdrop || !modalContainer) return;
 
-    modalBadge.textContent = data.badge;
-    modalTitle.textContent = data.title;
+  modalBadge.textContent = data.badge;
+  modalTitle.textContent = data.title;
+  if (modalCard) {
     modalCard.setAttribute("data-current-project", projectId);
+  }
 
-    const specsHtml = data.functionalSpec.map(s => `<li>${s}</li>`).join("");
-    const tagsHtml = data.stack.map(t => `<span class="tag-pill">${t}</span>`).join("");
-    
-    const playstoreLabel = data.links.playstoreText || "Probá la aplicación ↗";
-    const playstoreBtn = data.links.playstore 
-      ? `<a href="${data.links.playstore}" target="_blank" class="link-btn btn-pill" style="background: var(--accent); color:#000; font-weight:700;">${playstoreLabel}</a>` 
-      : "";
+  const specsHtml = data.functionalSpec.map(s => `<li>${s}</li>`).join("");
+  const tagsHtml = data.stack.map(t => `<span class="tag-pill">${t}</span>`).join("");
+  
+  const playstoreLabel = data.links.playstoreText || "Probá la aplicación ↗";
+  const playstoreBtn = data.links.playstore 
+    ? `<a href="${data.links.playstore}" target="_blank" class="link-btn btn-pill" style="background: var(--accent); color:#000; font-weight:700;">${playstoreLabel}</a>` 
+    : "";
 
-    const footerActionsHtml = playstoreBtn 
-      ? `<div class="modal-footer-actions">${playstoreBtn}</div>` 
-      : "";
+  const footerActionsHtml = playstoreBtn 
+    ? `<div class="modal-footer-actions">${playstoreBtn}</div>` 
+    : "";
 
-    if (data.orientation === "portrait") {
-      modalContainer.innerHTML = `
-        <div class="modal-layout-portrait">
-          <div class="modal-media-pane">
-            <img src="${data.image}" alt="${data.title}">
+  if (data.orientation === "portrait") {
+    modalContainer.innerHTML = `
+      <div class="modal-layout-portrait">
+        <div class="modal-media-pane">
+          <img src="${data.image}" alt="${data.title}">
+        </div>
+        <div class="modal-content-pane">
+          <p class="modal-tagline-text">${data.tagline}</p>
+          
+          <div class="modal-info-block">
+            <h4>🎯 Problema que Resuelve</h4>
+            <p>${data.problem}</p>
           </div>
-          <div class="modal-content-pane">
-            <p class="modal-tagline-text">${data.tagline}</p>
-            
+
+          <div class="modal-info-block">
+            <h4>📋 Análisis Funcional & Características</h4>
+            <ul>${specsHtml}</ul>
+          </div>
+
+          <div class="modal-info-block">
+            <h4>🛠️ Capacidades & Enfoque</h4>
+            <div class="card-tags" style="margin-top: 4px;">${tagsHtml}</div>
+          </div>
+
+          ${footerActionsHtml}
+        </div>
+      </div>
+    `;
+  } else {
+    modalContainer.innerHTML = `
+      <div class="modal-layout-landscape">
+        <div class="modal-media-pane">
+          <img src="${data.image}" alt="${data.title}">
+        </div>
+        <p class="modal-tagline-text">${data.tagline}</p>
+        
+        <div class="modal-landscape-grid">
+          <div class="modal-landscape-left">
             <div class="modal-info-block">
               <h4>🎯 Problema que Resuelve</h4>
               <p>${data.problem}</p>
-            </div>
-
-            <div class="modal-info-block">
-              <h4>📋 Análisis Funcional & Características</h4>
-              <ul>${specsHtml}</ul>
             </div>
 
             <div class="modal-info-block">
@@ -133,66 +159,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
             ${footerActionsHtml}
           </div>
-        </div>
-      `;
-    } else {
-      modalContainer.innerHTML = `
-        <div class="modal-layout-landscape">
-          <div class="modal-media-pane">
-            <img src="${data.image}" alt="${data.title}">
-          </div>
-          <p class="modal-tagline-text">${data.tagline}</p>
-          
-          <div class="modal-landscape-grid">
-            <div class="modal-landscape-left">
-              <div class="modal-info-block">
-                <h4>🎯 Problema que Resuelve</h4>
-                <p>${data.problem}</p>
-              </div>
 
-              <div class="modal-info-block">
-                <h4>🛠️ Capacidades & Enfoque</h4>
-                <div class="card-tags" style="margin-top: 4px;">${tagsHtml}</div>
-              </div>
-
-              ${footerActionsHtml}
-            </div>
-
-            <div class="modal-landscape-right">
-              <div class="modal-info-block" style="height: 100%;">
-                <h4>📋 Análisis Funcional & Características</h4>
-                <ul>${specsHtml}</ul>
-              </div>
+          <div class="modal-landscape-right">
+            <div class="modal-info-block" style="height: 100%;">
+              <h4>📋 Análisis Funcional & Características</h4>
+              <ul>${specsHtml}</ul>
             </div>
           </div>
         </div>
-      `;
-    }
-
-    modalBackdrop.classList.add("active");
-    document.body.style.overflow = "hidden";
+      </div>
+    `;
   }
 
-  function closeModal() {
+  modalBackdrop.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+function closeProjectModal() {
+  const modalBackdrop = document.getElementById("project-modal");
+  if (modalBackdrop) {
     modalBackdrop.classList.remove("active");
-    document.body.style.overflow = "auto";
   }
+  document.body.style.overflow = "auto";
+}
+
+// Resilient initialization
+function initApp() {
+  const modalBackdrop = document.getElementById("project-modal");
+  const modalCloseBtn = document.getElementById("modal-close-btn");
+  const cards = document.querySelectorAll(".card-item");
 
   cards.forEach(card => {
     card.addEventListener("click", () => {
       const pid = card.getAttribute("data-project");
-      renderModal(pid);
+      if (pid) openProjectModal(pid);
     });
   });
 
-  modalCloseBtn.addEventListener("click", closeModal);
-  modalBackdrop.addEventListener("click", (e) => {
-    if (e.target === modalBackdrop) closeModal();
-  });
+  if (modalCloseBtn) {
+    modalCloseBtn.addEventListener("click", closeProjectModal);
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener("click", (e) => {
+      if (e.target === modalBackdrop) closeProjectModal();
+    });
+  }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalBackdrop.classList.contains("active")) {
-      closeModal();
+    if (e.key === "Escape" && modalBackdrop && modalBackdrop.classList.contains("active")) {
+      closeProjectModal();
     }
   });
-});
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initApp);
+} else {
+  initApp();
+}

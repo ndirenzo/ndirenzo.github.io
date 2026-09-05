@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2.2">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/favicon.png">
 </head>
@@ -55,7 +55,7 @@
     <section class="cards-row-grid">
 
       <!-- 1. SAFESWEAR EPP (TESIS UNIVERSITARIA) -->
-      <div class="card-item" data-project="safewear-epp">
+      <div class="card-item" data-project="safewear-epp" onclick="openProjectModal('safewear-epp')">
         <div class="card-thumb">
           <img src="assets/projects/safewear_epp.png" alt="SafeWear Control de EPP" class="card-img">
           <span class="card-overlay-badge">Tesis Universitaria</span>
@@ -80,7 +80,7 @@
       </div>
 
       <!-- 2. PORTFOLIO TRACKER -->
-      <div class="card-item" data-project="portfolio-tracker">
+      <div class="card-item" data-project="portfolio-tracker" onclick="openProjectModal('portfolio-tracker')">
         <div class="card-thumb">
           <img src="assets/projects/portfolio_tracker.png" alt="Portfolio Tracker" class="card-img">
           <span class="card-overlay-badge">Fintech</span>
@@ -105,7 +105,7 @@
       </div>
 
       <!-- 3. BAR VISION AI -->
-      <div class="card-item" data-project="bar-vision">
+      <div class="card-item" data-project="bar-vision" onclick="openProjectModal('bar-vision')">
         <div class="card-thumb">
           <img src="assets/projects/bar_vision.png" alt="Bar Vision AI" class="card-img">
           <span class="card-overlay-badge">Visión Artificial</span>
@@ -130,7 +130,7 @@
       </div>
 
       <!-- 4. SPENDTRACK MOBILE -->
-      <div class="card-item" data-project="spendtrack-mobile">
+      <div class="card-item" data-project="spendtrack-mobile" onclick="openProjectModal('spendtrack-mobile')">
         <div class="card-thumb">
           <img src="assets/projects/spendtrack_mobile.jpg" alt="SpendTrack Mobile" class="card-img">
           <span class="card-overlay-badge">Mobile App</span>
@@ -171,7 +171,7 @@
           <span id="modal-badge" style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase;"></span>
           <h3 id="modal-title" style="font-size: 1.25rem; font-weight: 700; letter-spacing: -0.01em;"></h3>
         </div>
-        <button id="modal-close-btn" class="modal-close-btn" aria-label="Cerrar">&times;</button>
+        <button id="modal-close-btn" class="modal-close-btn" onclick="closeProjectModal()" aria-label="Cerrar">&times;</button>
       </div>
 
       <div class="modal-body" id="modal-dynamic-body">
@@ -180,6 +180,6 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2.2"></script>
 </body>
 </html>
