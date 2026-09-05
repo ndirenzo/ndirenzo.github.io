@@ -220,6 +220,10 @@ body {
 }
 
 /* Specific Thumbnail Focal Points */
+.card-item[data-project="safewear-epp"] .card-img {
+  object-position: 70% center; /* Focuses on the real-time detection & compliance */
+}
+
 .card-item[data-project="portfolio-tracker"] .card-img {
   object-position: center 78%; /* Centers directly on the Donut / Pie Chart */
 }
@@ -464,6 +468,10 @@ body {
 }
 
 /* Project-Specific Modal Landscape Focal Points */
+.modal-card[data-current-project="safewear-epp"] .modal-media-pane img {
+  object-position: center center;
+}
+
 .modal-card[data-current-project="portfolio-tracker"] .modal-media-pane img {
   object-position: center 78%; /* Shows Donut / Pie Chart & Category breakdown prominently */
 }

@@ -4,6 +4,24 @@
  */
 
 const projectsData = {
+  "safewear-epp": {
+    orientation: "landscape",
+    badge: "Tesis Universitaria • Computer Vision",
+    title: "SafeWear - Control de EPP & Acceso",
+    tagline: "Sistema de visión artificial y control de acceso industrial para verificación de Elementos de Protección Personal (Tesis de Grado).",
+    image: "assets/projects/safewear_epp.png",
+    problem: "Los entornos industriales sufren accidentes graves por falta de uso de EPP obligatorio y por la imposibilidad de auditar el cumplimiento de seguridad en tiempo real.",
+    functionalSpec: [
+      "Proyecto de Tesis Universitaria desarrollado para auditoría y seguridad laboral automatizada.",
+      "Inferencia con modelo YOLO fine-tuneado para detección de Casco, Barbijo/Máscara y Chaleco reflectivo en tiempo real.",
+      "Motor de reglas por puesto de trabajo: valida requisitos de EPP según el área asignada al empleado (e.g. Soldadura, Obras).",
+      "Control de acceso automático: bloqueo y alerta inmediata ('ACCESO NO AUTORIZADO') ante falta de elementos obligatorios.",
+      "Panel de control web y auditoría con sincronización en la nube mediante Firebase."
+    ],
+    stack: ["Tesis Universitaria", "Visión Artificial", "YOLO", "Control de Acceso", "Firebase"],
+    links: {}
+  },
+
   "portfolio-tracker": {
     orientation: "landscape",
     badge: "Fintech & Gestión Patrimonial",
@@ -57,23 +75,6 @@ const projectsData = {
       playstore: "https://play.google.com/store/apps/details?id=com.controlgastos.appstock&pcampaignid=web_share",
       playstoreText: "Probá la aplicación ↗"
     }
-  },
-
-  "turnos": {
-    orientation: "portrait",
-    badge: "SaaS & Gestión de Reservas",
-    title: "Turnos Express (Pestañas & Uñas)",
-    tagline: "Plataforma web mobile-first de reserva táctil de turnos para estudios de estética y manicuría.",
-    image: "assets/projects/turnos_mobile.png",
-    problem: "Los profesionales de estética pierden horas coordinando agendas por WhatsApp y sufren cancelaciones de último momento por falta de confirmaciones.",
-    functionalSpec: [
-      "Flujo de reserva en 3 pasos con catálogo visual de servicios y precios transparentes.",
-      "Selector táctil de fechas y horarios con bloqueo de concurrencia en tiempo real en Firestore.",
-      "Panel protegido para el negocio con control de ocupación, métricas de visitas y avisos por WhatsApp.",
-      "Cero fricción de registro para el cliente final."
-    ],
-    stack: ["SaaS", "Firebase Firestore", "Reservas en Tiempo Real", "Mobile-First"],
-    links: {}
   }
 };
 
